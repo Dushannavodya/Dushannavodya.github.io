@@ -1950,7 +1950,7 @@ body.loaded {
 .skills-widget .skill-item .icon-box {
 	max-width: 60px;
 	width: 100%;
-	margin: 0 auto 30px;
+	margin: 0 auto 0px;
 }
 
 .skills-widget .skill-item .icon-box img {
