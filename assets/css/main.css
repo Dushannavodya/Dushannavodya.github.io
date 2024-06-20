@@ -1396,7 +1396,8 @@ body.loaded {
 	width: 48%;
 }
 .portfolio-box .portfolio-item {
-	background-color: var(--tj-theme-accent-2);
+	/* background-color: var(--tj-theme-accent-2); */
+	background-color: #efe8fa;
 	margin-bottom: 4%;
 	padding: 36px 36px 0 36px;
 	border-radius: 10px;
