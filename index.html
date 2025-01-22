@@ -632,7 +632,7 @@
                   </nav>
                </div>
                <div class="copy-text">
-                  <p>&copy; 2024 All rights reserved</a></p>
+                  <p>&copy; <span id="currentYear"></span> All rights reserved</a></p>
                </div>
             </div>
          </div>
@@ -640,7 +640,11 @@
    </footer>
    <!-- FOOTER AREA END -->
 
-   <!-- CSS here -->
+   <!-- Scripts here -->
+   <script>
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+
    <script src="assets/js/jquery.min.js"></script>
    <script src="assets/js/bootstrap.bundle.min.js"></script>
    <script src="assets/js/nice-select.min.js"></script>
