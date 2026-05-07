@@ -1,32 +1,44 @@
 export const services = [
   {
     number: '01',
-    title: 'Branding Solutions',
+    title: 'Full-Stack Development',
     description:
-      'Crafting cohesive solutions that resonate with your audience, leveraging my expertise in software development to solve complex challenges.',
+      'Building scalable web apps from frontend to backend.',
   },
   {
     number: '02',
-    title: 'Web Development',
+    title: 'SaaS Development',
     description:
-      'Building intuitive and efficient web solutions that align perfectly with your vision and business objectives.',
+      'Creating subscription-based platforms and startup products.',
   },
   {
     number: '03',
     title: 'UI/UX Design',
     description:
-      'Enhancing user experiences through thoughtful design and seamless functionality, ensuring your digital presence captivates and converts.',
+      'Designing clean, user-focused digital experiences.',
   },
   {
     number: '04',
-    title: 'Graphic Design',
+    title: 'Startup MVPs',
     description:
-      "I integrate captivating visuals that enhance your brand's story and aesthetics, reinforcing your online presence with impactful design elements.",
+      'Turning ideas into fast, launch-ready products.',
+  },
+  {
+    number: '05',
+    title: 'Automation Solutions',
+    description:
+      'Streamlining business workflows with smart automation.',
+  },
+  {
+    number: '06',
+    title: 'Brand & Digital Presence',
+    description:
+      'Crafting modern online identities that convert.',
   },
 ]
 
 export const servicesIntro = {
   title: 'My Services',
   description:
-    "I'm a passionate full-stack software developer dedicated to bringing your vision to life through innovative web solutions.",
+    'Full-stack development, product strategy, and digital systems for businesses ready to grow online.',
 }

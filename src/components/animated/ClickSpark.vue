@@ -9,7 +9,7 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const props = defineProps({
-  sparkColor: { type: String, default: '#d9f95c' },
+  sparkColor: { type: String, default: '#ff4d00' },
   sparkSize: { type: Number, default: 10 },
   sparkRadius: { type: Number, default: 22 },
   sparkCount: { type: Number, default: 9 },

@@ -6,7 +6,7 @@ export const about = {
     "I'm a passionate full-stack software developer dedicated to bringing your vision to life through innovative web solutions.",
   ],
   highlights: [
-    { label: 'Core Focus', value: 'Web · Mobile · UX' },
+    { label: 'Core Focus', value: 'Web • Mobile • UX' },
     { label: 'Based In', value: 'Milan, Italy' },
   ],
 }

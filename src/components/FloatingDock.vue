@@ -6,10 +6,13 @@ import {
   Sparkles,
   Send,
   ArrowUp,
+  Moon,
+  Sun,
 } from 'lucide-vue-next'
 import { useActiveSection } from '@/composables/useActiveSection.js'
 import { useScrollProgress } from '@/composables/useScrollProgress.js'
 import { scrollToHash, scrollToTop } from '@/composables/useSmoothScroll.js'
+import { useTheme } from '@/composables/useTheme.js'
 
 // Order MUST match the order of the sections on the page so the dock
 // reads left-to-right as you scroll top-to-bottom.
@@ -23,6 +26,7 @@ const dockItems = [
 
 const { activeId } = useActiveSection(dockItems.map((i) => i.id))
 const { isVisible } = useScrollProgress(120)
+const { isLight, toggleTheme } = useTheme()
 
 function onClick(event, href) {
   event.preventDefault()
@@ -52,6 +56,17 @@ function onClick(event, href) {
       <li>
         <button
           type="button"
+          :aria-label="isLight ? 'Switch to dark mode' : 'Switch to light mode'"
+          :title="isLight ? 'Dark mode' : 'Light mode'"
+          @click="toggleTheme"
+        >
+          <Moon v-if="isLight" :size="18" :stroke-width="1.6" />
+          <Sun v-else :size="18" :stroke-width="1.6" />
+        </button>
+      </li>
+      <li>
+        <button
+          type="button"
           aria-label="Back to top"
           title="Back to top"
           @click="scrollToTop"
@@ -72,8 +87,8 @@ function onClick(event, href) {
   z-index: 60;
   padding: 8px;
   border-radius: var(--radius-pill);
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--dock-bg);
+  border: 1px solid var(--dock-border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow-soft);
@@ -107,7 +122,7 @@ function onClick(event, href) {
 .dock a:hover,
 .dock button:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--control-hover-bg);
 }
 
 .dock a.is-active {
@@ -118,7 +133,7 @@ function onClick(event, href) {
 .dock__separator {
   width: 1px;
   height: 22px;
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--border-strong);
   margin: 0 4px;
 }
 

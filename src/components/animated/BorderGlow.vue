@@ -16,8 +16,8 @@ import { computed, ref, useTemplateRef, watch } from 'vue'
 const props = defineProps({
   className: { type: String, default: '' },
   edgeSensitivity: { type: Number, default: 30 },
-  glowColor: { type: String, default: '40 80 80' }, // "h s% l%"
-  backgroundColor: { type: String, default: '#161616' },
+  glowColor: { type: String, default: '18 100 50' }, // "h s% l%"
+  backgroundColor: { type: String, default: 'var(--surface)' },
   borderRadius: { type: Number, default: 14 },
   glowRadius: { type: Number, default: 40 },
   glowIntensity: { type: Number, default: 1.0 },
@@ -25,7 +25,7 @@ const props = defineProps({
   animated: { type: Boolean, default: false },
   colors: {
     type: Array,
-    default: () => ['#d9f95c', '#ff7a18', '#ff4d00'],
+    default: () => ['#ff4d00', '#ff7a18', '#ff9a3d'],
   },
   fillOpacity: { type: Number, default: 0.5 },
 })
@@ -337,7 +337,7 @@ const innerGlowStyle = computed(() => ({
   position: relative;
   display: grid;
   isolation: isolate;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--border-strong);
 }
 
 .border-glow__layer {

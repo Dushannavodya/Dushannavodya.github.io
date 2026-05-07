@@ -8,14 +8,13 @@ import AboutSection from './components/sections/AboutSection.vue'
 import ServicesSection from './components/sections/ServicesSection.vue'
 import PortfolioSection from './components/sections/PortfolioSection.vue'
 import CvSection from './components/sections/CvSection.vue'
-import InnovationsSection from './components/sections/InnovationsSection.vue'
 import ContactSection from './components/sections/ContactSection.vue'
 </script>
 
 <template>
   <FloatingNav />
   <FloatingDock />
-  <ClickSpark spark-color="#d9f95c" :spark-count="10" :spark-radius="24" />
+  <ClickSpark spark-color="#ff4d00" :spark-count="10" :spark-radius="24" />
 
   <main id="content">
     <HeroSection />
@@ -23,7 +22,6 @@ import ContactSection from './components/sections/ContactSection.vue'
     <ServicesSection />
     <PortfolioSection />
     <CvSection />
-    <InnovationsSection />
     <ContactSection />
   </main>
 
@@ -36,7 +34,7 @@ import ContactSection from './components/sections/ContactSection.vue'
 
 <style scoped>
 .site-footer {
-  padding: var(--space-6) 0 var(--space-8);
+  padding: var(--space-6) 0 calc(var(--space-8) + 88px);
   border-top: 1px solid var(--border);
   text-align: center;
   color: var(--text-dim);

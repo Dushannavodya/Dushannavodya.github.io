@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { ArrowRight } from 'lucide-vue-next'
 import { about } from '@/data/about.js'
 import { site, socials } from '@/data/site.js'
@@ -7,6 +8,16 @@ import AnimatedContent from '@/components/animated/AnimatedContent.vue'
 import SplitText from '@/components/animated/SplitText.vue'
 import BlurText from '@/components/animated/BlurText.vue'
 import Magnet from '@/components/animated/Magnet.vue'
+
+const experienceStartYear = 2018
+const experienceYears = computed(
+  () => new Date().getFullYear() - experienceStartYear,
+)
+const highlights = computed(() => [
+  about.highlights[0],
+  { label: 'Experience', value: `${experienceYears.value}+ Years` },
+  about.highlights[1],
+])
 </script>
 
 <template>
@@ -50,7 +61,7 @@ import Magnet from '@/components/animated/Magnet.vue'
 
           <AnimatedContent :delay="0.1">
             <dl class="about__highlights">
-              <div v-for="hl in about.highlights" :key="hl.label">
+              <div v-for="hl in highlights" :key="hl.label">
                 <dt>{{ hl.label }}</dt>
                 <dd>{{ hl.value }}</dd>
               </div>
@@ -143,8 +154,8 @@ import Magnet from '@/components/animated/Magnet.vue'
 
 .about__highlights {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-5) var(--space-7);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
   margin: 0;
 }
 
@@ -188,6 +199,15 @@ import Magnet from '@/components/animated/Magnet.vue'
   }
   .about__media {
     min-height: 380px;
+  }
+  .about__highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .about__highlights {
+    grid-template-columns: 1fr;
   }
 }
 </style>

@@ -15,8 +15,8 @@ function selectFilter(value) {
   activeFilter.value = value
 }
 
-const GLOW_HSL = '73 92 67'
-const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
+const GLOW_HSL = '18 100 50'
+const MESH_COLORS = ['#ff4d00', '#ff7a18', '#ff9a3d']
 </script>
 
 <template>
@@ -40,32 +40,29 @@ const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
         </div>
       </div>
 
-      <div class="works__grid">
-        <transition-group name="work">
-          <BorderGlow
-            v-for="item in filteredItems"
-            :key="item.id"
-            v-reveal
-            class-name="work-card-shell"
-            :glow-color="GLOW_HSL"
-            :colors="MESH_COLORS"
-            background-color="#161616"
-            :border-radius="14"
-            :glow-radius="42"
-            :glow-intensity="0.9"
-          >
-            <article class="work-card">
-              <div class="work-card__media">
-                <img :src="item.image" :alt="item.title" />
-              </div>
-              <div class="work-card__body">
-                <h3 class="work-card__title">{{ item.title }}</h3>
-                <p class="work-card__tags">{{ item.tags }}</p>
-              </div>
-            </article>
-          </BorderGlow>
-        </transition-group>
-      </div>
+      <transition-group name="work" tag="div" class="works__grid">
+        <BorderGlow
+          v-for="item in filteredItems"
+          :key="item.id"
+          class-name="work-card-shell"
+          :glow-color="GLOW_HSL"
+          :colors="MESH_COLORS"
+          background-color="var(--surface)"
+          :border-radius="14"
+          :glow-radius="42"
+          :glow-intensity="0.9"
+        >
+          <article class="work-card">
+            <div class="work-card__media">
+              <img :src="item.image" :alt="item.title" />
+            </div>
+            <div class="work-card__body">
+              <h3 class="work-card__title">{{ item.title }}</h3>
+              <p class="work-card__tags">{{ item.tags }}</p>
+            </div>
+          </article>
+        </BorderGlow>
+      </transition-group>
     </div>
   </section>
 </template>
@@ -84,7 +81,7 @@ const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
   gap: 4px;
   padding: 6px;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--control-bg);
   border: 1px solid var(--border);
   max-width: 100%;
 }
@@ -110,14 +107,20 @@ const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
 }
 
 .works__grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-5);
+  align-items: start;
 }
 
 /* BorderGlow wraps the inner article; clip the article's overflow there. */
 :deep(.work-card-shell) {
   overflow: hidden;
+  transition:
+    opacity 320ms ease,
+    transform 320ms ease,
+    box-shadow var(--transition);
 }
 
 .work-card {
@@ -159,15 +162,25 @@ const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
 
 .work-enter-active,
 .work-leave-active {
-  transition: opacity 350ms ease, transform 350ms ease;
+  transition:
+    opacity 280ms ease,
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.work-move {
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .work-enter-from,
 .work-leave-to {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(14px) scale(0.98);
 }
+
 .work-leave-active {
   position: absolute;
+  width: calc((100% - var(--space-5)) / 2);
+  pointer-events: none;
 }
 
 @media (max-width: 720px) {
@@ -178,6 +191,9 @@ const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
     padding: 9px 12px;
     font-size: 11px;
     letter-spacing: 0.1em;
+  }
+  .work-leave-active {
+    width: 100%;
   }
 }
 </style>

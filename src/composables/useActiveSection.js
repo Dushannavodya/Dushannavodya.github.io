@@ -14,7 +14,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
  * @returns { activeId }
  */
 export function useActiveSection(sectionIds, offset = 120) {
-  const activeId = ref(sectionIds[0] || null)
+  const activeId = ref(null)
   let raf = null
 
   function getOrderedElements() {
@@ -28,7 +28,7 @@ export function useActiveSection(sectionIds, offset = 120) {
     const elements = getOrderedElements()
     if (elements.length === 0) return
 
-    let current = elements[0].id
+    let current = null
     for (const { id, el } of elements) {
       const top = el.getBoundingClientRect().top
       if (top - offset <= 0) {
