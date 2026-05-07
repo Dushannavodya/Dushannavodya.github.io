@@ -1,0 +1,17 @@
+export const skills = [
+  { name: 'Angular', icon: '/assets/img/icons/angular.svg' },
+  { name: 'Vue', icon: '/assets/img/icons/vue.svg' },
+  { name: 'WordPress', icon: '/assets/img/icons/wordpress.svg' },
+  { name: 'Springboot', icon: '/assets/img/icons/springboot.svg' },
+  { name: 'Android', icon: '/assets/img/icons/android.svg' },
+  { name: 'Sharepoint', icon: '/assets/img/icons/sharepoint.svg' },
+  { name: 'Pinia', icon: '/assets/img/icons/pinia.svg' },
+  { name: 'Java', icon: '/assets/img/icons/java.svg' },
+  { name: 'JavaScript', icon: '/assets/img/icons/js.svg' },
+  { name: 'TypeScript', icon: '/assets/img/icons/typescript.svg' },
+  { name: '.Net', icon: '/assets/img/icons/dotNet.svg' },
+  { name: 'C#', icon: '/assets/img/icons/csharp.svg' },
+  { name: 'MS SQL Server', icon: '/assets/img/icons/mssqlserver.svg' },
+  { name: 'Postgresql', icon: '/assets/img/icons/postgresql.svg' },
+  { name: 'Firebase', icon: '/assets/img/icons/firebase.svg' },
+]
