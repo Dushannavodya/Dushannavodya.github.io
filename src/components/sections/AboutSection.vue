@@ -107,6 +107,11 @@ const highlights = computed(() => [
   grid-template-columns: 1fr 1fr;
   gap: var(--space-8);
   align-items: stretch;
+  min-width: 0;
+}
+
+.about__grid > * {
+  min-width: 0;
 }
 
 .about__media {
@@ -185,6 +190,7 @@ const highlights = computed(() => [
 
 .about__socials {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-5);
   font-size: 11px;
   letter-spacing: 0.2em;

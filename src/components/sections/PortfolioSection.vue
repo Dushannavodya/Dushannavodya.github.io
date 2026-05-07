@@ -78,6 +78,7 @@ const MESH_COLORS = ['#ff4d00', '#ff7a18', '#ff9a3d']
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 4px;
   padding: 6px;
   border-radius: var(--radius-pill);
@@ -112,6 +113,7 @@ const MESH_COLORS = ['#ff4d00', '#ff7a18', '#ff9a3d']
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-5);
   align-items: start;
+  min-width: 0;
 }
 
 /* BorderGlow wraps the inner article; clip the article's overflow there. */

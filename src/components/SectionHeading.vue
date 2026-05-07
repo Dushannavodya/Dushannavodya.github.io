@@ -41,6 +41,8 @@ defineProps({
   gap: var(--space-4);
   text-align: center;
   margin-bottom: var(--space-8);
+  max-width: 100%;
+  min-width: 0;
 }
 
 .section-heading--left {
