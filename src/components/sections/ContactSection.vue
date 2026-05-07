@@ -104,6 +104,7 @@ const iconByName = {
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
+  min-width: 0;
 }
 
 .contact__details a,
@@ -111,6 +112,8 @@ const iconByName = {
   font-size: 16px;
   font-weight: 500;
   color: var(--text);
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .contact__details a:hover {

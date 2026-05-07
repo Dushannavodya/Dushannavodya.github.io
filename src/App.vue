@@ -34,12 +34,18 @@ import ContactSection from './components/sections/ContactSection.vue'
 
 <style scoped>
 .site-footer {
-  padding: var(--space-6) 0 calc(var(--space-8) + 88px);
+  padding: var(--space-6) 0 calc(var(--space-6) + 76px);
   border-top: 1px solid var(--border);
   text-align: center;
   color: var(--text-dim);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    padding-bottom: var(--space-6);
+  }
 }
 </style>

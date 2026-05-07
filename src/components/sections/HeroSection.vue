@@ -130,6 +130,9 @@ const heroName = computed(() => site.name.toUpperCase())
   text-align: center;
   color: #fff;
   gap: var(--space-4);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .hero__name {
@@ -141,6 +144,8 @@ const heroName = computed(() => site.name.toUpperCase())
   text-shadow: 0 6px 60px rgba(0, 0, 0, 0.18);
   cursor: default;
   animation: hero-name-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 /* Override the DecryptedText accent color in the hero so the encrypted
@@ -171,8 +176,17 @@ const heroName = computed(() => site.name.toUpperCase())
 }
 
 @media (max-width: 600px) {
+  .hero {
+    padding-inline: var(--space-4);
+  }
+
+  .hero__name {
+    font-size: clamp(42px, 18vw, 72px);
+  }
+
   .hero__role {
     letter-spacing: 0.25em;
+    overflow-wrap: anywhere;
   }
 }
 

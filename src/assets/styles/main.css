@@ -91,6 +91,9 @@ html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 html {
@@ -109,7 +112,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+#app {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 img,
@@ -169,6 +178,7 @@ body.no-scroll {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--space-5);
+  min-width: 0;
 }
 
 .section {
@@ -222,12 +232,25 @@ body.no-scroll {
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.02em;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .subtitle {
   color: var(--text-muted);
   font-size: clamp(15px, 1.5vw, 17px);
   max-width: 56ch;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .section-title {
+    font-size: clamp(32px, 12vw, 44px);
+  }
 }
 
 /* =========================================================================

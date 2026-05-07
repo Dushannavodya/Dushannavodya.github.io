@@ -1,4 +1,5 @@
 <script setup>
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import {
   User,
   Briefcase,
@@ -27,17 +28,38 @@ const dockItems = [
 const { activeId } = useActiveSection(dockItems.map((i) => i.id))
 const { isVisible } = useScrollProgress(120)
 const { isLight, toggleTheme } = useTheme()
+const isMobileDock = ref(false)
+const isDockVisible = computed(() => isMobileDock.value || isVisible.value)
+
+let mediaQuery = null
+
+function updateDockMode() {
+  isMobileDock.value = mediaQuery?.matches || false
+}
 
 function onClick(event, href) {
   event.preventDefault()
   scrollToHash(href)
 }
+
+onMounted(() => {
+  mediaQuery = window.matchMedia('(max-width: 900px), (pointer: coarse)')
+  updateDockMode()
+  mediaQuery.addEventListener('change', updateDockMode)
+})
+
+onBeforeUnmount(() => {
+  mediaQuery?.removeEventListener('change', updateDockMode)
+})
 </script>
 
 <template>
   <nav
     class="dock"
-    :class="{ 'dock--hidden': !isVisible }"
+    :class="{
+      'dock--hidden': !isDockVisible,
+      'dock--mobile': isMobileDock,
+    }"
     aria-label="Quick navigation"
   >
     <ul>
@@ -81,10 +103,12 @@ function onClick(event, href) {
 <style scoped>
 .dock {
   position: fixed;
-  bottom: 24px;
+  bottom: max(24px, calc(env(safe-area-inset-bottom) + 12px));
   left: 50%;
-  transform: translateX(-50%);
-  z-index: 60;
+  transform: translate3d(-50%, 0, 0);
+  z-index: 10001;
+  width: max-content;
+  max-width: calc(100dvw - 24px);
   padding: 8px;
   border-radius: var(--radius-pill);
   background: var(--dock-bg);
@@ -98,13 +122,20 @@ function onClick(event, href) {
 .dock--hidden {
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, 16px);
+  transform: translate3d(-50%, 16px, 0);
 }
 
 .dock ul {
   display: flex;
   align-items: center;
   gap: 4px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dock ul::-webkit-scrollbar {
+  display: none;
 }
 
 .dock a,
@@ -137,11 +168,46 @@ function onClick(event, href) {
   margin: 0 4px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .dock {
-    bottom: 16px;
+    bottom: max(12px, calc(env(safe-area-inset-bottom) + 8px));
+    max-width: calc(100dvw - 16px);
     padding: 6px;
   }
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  .dock,
+  .dock.dock--hidden,
+  .dock.dock--mobile {
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: max(10px, calc(env(safe-area-inset-bottom) + 8px));
+    width: auto;
+    max-width: none;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .dock {
+    display: flex;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 28px;
+    contain: layout paint;
+  }
+
+  .dock ul {
+    width: 100%;
+    justify-content: center;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 480px) {
   .dock ul {
     gap: 2px;
   }
@@ -156,10 +222,22 @@ function onClick(event, href) {
 }
 
 @media (max-width: 360px) {
+  .dock {
+    padding: 5px;
+  }
+
+  .dock ul {
+    gap: 1px;
+  }
+
   .dock a,
   .dock button {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .dock__separator {
+    margin: 0 1px;
   }
 }
 </style>
