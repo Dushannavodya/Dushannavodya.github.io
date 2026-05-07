@@ -11,11 +11,13 @@ import { useActiveSection } from '@/composables/useActiveSection.js'
 import { useScrollProgress } from '@/composables/useScrollProgress.js'
 import { scrollToHash, scrollToTop } from '@/composables/useSmoothScroll.js'
 
+// Order MUST match the order of the sections on the page so the dock
+// reads left-to-right as you scroll top-to-bottom.
 const dockItems = [
   { id: 'about', label: 'About', icon: User, href: '#about' },
   { id: 'services', label: 'Services', icon: Sparkles, href: '#services' },
-  { id: 'cv', label: 'CV', icon: FileText, href: '#cv' },
   { id: 'works', label: 'Work', icon: Briefcase, href: '#works' },
+  { id: 'cv', label: 'CV', icon: FileText, href: '#cv' },
   { id: 'contact', label: 'Contact', icon: Send, href: '#contact' },
 ]
 
@@ -118,5 +120,31 @@ function onClick(event, href) {
   height: 22px;
   background: rgba(255, 255, 255, 0.16);
   margin: 0 4px;
+}
+
+@media (max-width: 480px) {
+  .dock {
+    bottom: 16px;
+    padding: 6px;
+  }
+  .dock ul {
+    gap: 2px;
+  }
+  .dock a,
+  .dock button {
+    width: 38px;
+    height: 38px;
+  }
+  .dock__separator {
+    margin: 0 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .dock a,
+  .dock button {
+    width: 34px;
+    height: 34px;
+  }
 }
 </style>

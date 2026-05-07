@@ -8,11 +8,13 @@ export const site = {
   resumeUrl: '/assets/files/Dushan-Resume.pdf',
 }
 
+// Order MUST match the order of the sections on the page so navigating
+// always moves you in one direction (no up-and-down jumps).
 export const navigation = [
   { id: 'about', label: 'About', href: '#about' },
+  { id: 'services', label: 'Services', href: '#services' },
   { id: 'works', label: 'Work', href: '#works' },
   { id: 'cv', label: 'CV', href: '#cv' },
-  { id: 'services', label: 'Services', href: '#services' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ]
 

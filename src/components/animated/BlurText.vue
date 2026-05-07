@@ -54,6 +54,7 @@ const transition = (index) => ({
 
 .blur-text__word {
   display: inline-block;
+  white-space: nowrap;
   will-change: filter, transform, opacity;
 }
 </style>

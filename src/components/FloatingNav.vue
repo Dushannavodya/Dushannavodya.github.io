@@ -86,11 +86,19 @@ function onClick(event, href) {
   color: var(--text);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .floating-nav a {
-    padding: 8px 10px;
+    padding: 8px 12px;
     font-size: 10px;
     letter-spacing: 0.12em;
+  }
+}
+
+/* On phones the top pill nav becomes too crowded - hide it and let the
+ * icon dock at the bottom handle navigation. */
+@media (max-width: 640px) {
+  .floating-nav {
+    display: none;
   }
 }
 </style>

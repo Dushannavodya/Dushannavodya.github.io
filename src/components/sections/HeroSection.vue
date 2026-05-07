@@ -118,17 +118,20 @@ import Magnet from '@/components/animated/Magnet.vue'
 
 .hero__content {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   color: #fff;
+  gap: var(--space-4);
 }
 
 .hero__name {
-  font-size: clamp(56px, 12vw, 168px);
+  font-size: clamp(44px, 9vw, 128px);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 0.95;
   text-transform: uppercase;
-  margin-bottom: var(--space-4);
   text-shadow: 0 6px 60px rgba(0, 0, 0, 0.18);
 }
 
@@ -138,6 +141,18 @@ import Magnet from '@/components/animated/Magnet.vue'
   letter-spacing: 0.45em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.92);
+}
+
+@media (max-width: 600px) {
+  .hero__role {
+    letter-spacing: 0.25em;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__role {
+    letter-spacing: 0.15em;
+  }
 }
 
 .hero__scroll-wrap {

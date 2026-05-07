@@ -1,43 +1,72 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 /**
- * Highlights the nav link whose section is currently in the viewport.
+ * Highlights the section currently under a virtual "active line" near the
+ * top of the viewport. Uses a scroll listener (rAF-throttled) instead of
+ * IntersectionObserver because IO with a `threshold` ratio fails on
+ * sections taller than the viewport: only a slice is ever visible, so the
+ * ratio never reaches the trigger.
  *
- * @param {string[]} sectionIds - the section element ids in document order
- * @returns { activeId } - reactive id of the currently active section
+ * @param {string[]} sectionIds - section ids to track
+ * @param {number}   offset     - distance from viewport top (px) of the
+ *                                 active line; default 120 (sits just below
+ *                                 the floating top nav)
+ * @returns { activeId }
  */
-export function useActiveSection(sectionIds) {
+export function useActiveSection(sectionIds, offset = 120) {
   const activeId = ref(sectionIds[0] || null)
-  let observer = null
+  let raf = null
+
+  function getOrderedElements() {
+    return sectionIds
+      .map((id) => ({ id, el: document.getElementById(id) }))
+      .filter((e) => e.el)
+      .sort((a, b) => a.el.offsetTop - b.el.offsetTop)
+  }
+
+  function update() {
+    const elements = getOrderedElements()
+    if (elements.length === 0) return
+
+    let current = elements[0].id
+    for (const { id, el } of elements) {
+      const top = el.getBoundingClientRect().top
+      if (top - offset <= 0) {
+        current = id
+      } else {
+        break
+      }
+    }
+
+    // Snap to the last section once we've reached the bottom of the page
+    // so the final item still highlights at the very end of the scroll.
+    const scrolled = window.scrollY + window.innerHeight
+    const docHeight = document.documentElement.scrollHeight
+    if (docHeight - scrolled < 4) {
+      current = elements[elements.length - 1].id
+    }
+
+    activeId.value = current
+  }
+
+  function onScroll() {
+    if (raf) return
+    raf = requestAnimationFrame(() => {
+      raf = null
+      update()
+    })
+  }
 
   onMounted(() => {
-    if (!('IntersectionObserver' in window)) return
-
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean)
-
-    observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-        if (visible.length > 0) {
-          activeId.value = visible[0].target.id
-        }
-      },
-      {
-        // Treat a section as "active" once a third of it is in view.
-        threshold: [0.33],
-        rootMargin: '-20% 0px -40% 0px',
-      },
-    )
-
-    elements.forEach((el) => observer.observe(el))
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+    update()
   })
 
   onBeforeUnmount(() => {
-    if (observer) observer.disconnect()
+    window.removeEventListener('scroll', onScroll)
+    window.removeEventListener('resize', onScroll)
+    if (raf) cancelAnimationFrame(raf)
   })
 
   return { activeId }
