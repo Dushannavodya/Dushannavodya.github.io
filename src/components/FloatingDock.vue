@@ -181,12 +181,12 @@ onBeforeUnmount(() => {
   .dock.dock--hidden,
   .dock.dock--mobile {
     position: fixed;
-    left: 8px;
-    right: 8px;
+    left: 50%;
+    right: auto;
     bottom: max(10px, calc(env(safe-area-inset-bottom) + 8px));
-    width: auto;
-    max-width: none;
-    transform: none;
+    width: fit-content;
+    max-width: calc(100dvw - 16px);
+    transform: translate3d(-50%, 0, 0);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -197,13 +197,13 @@ onBeforeUnmount(() => {
     justify-content: center;
     padding: 6px;
     border-radius: 28px;
-    contain: layout paint;
   }
 
   .dock ul {
-    width: 100%;
+    width: max-content;
+    max-width: 100%;
     justify-content: center;
-    overflow: visible;
+    overflow-x: auto;
   }
 }
 
