@@ -1,13 +1,27 @@
 <script setup>
 import SectionHeading from '@/components/SectionHeading.vue'
+import CircularTextButton from '@/components/animated/CircularTextButton.vue'
 import { education, experience } from '@/data/resume.js'
+import { site } from '@/data/site.js'
 import { skills } from '@/data/skills.js'
 </script>
 
 <template>
   <section id="cv" class="section cv">
     <div class="container">
-      <SectionHeading eyebrow="Career & Knowledge" title="Curriculum Vitae" />
+      <div class="cv__head">
+        <SectionHeading
+          eyebrow="Career & Knowledge"
+          title="Curriculum Vitae"
+          align="left"
+        />
+
+        <CircularTextButton
+          :href="site.resumeUrl"
+          download="Dushan-Resume.pdf"
+          text="DOWNLOAD • RESUME •"
+        />
+      </div>
 
       <div class="cv__grid">
         <div class="cv__col">
@@ -67,6 +81,18 @@ import { skills } from '@/data/skills.js'
 </template>
 
 <style scoped>
+.cv__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.cv__head :deep(.section-heading) {
+  margin-bottom: 0;
+}
+
 .cv__grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -212,9 +238,21 @@ import { skills } from '@/data/skills.js'
 }
 
 @media (max-width: 900px) {
+  .cv__head {
+    align-items: flex-start;
+    margin-bottom: var(--space-7);
+  }
+
   .cv__grid {
     grid-template-columns: 1fr;
     gap: var(--space-7);
+  }
+}
+
+@media (max-width: 620px) {
+  .cv__head {
+    flex-direction: column;
+    gap: var(--space-5);
   }
 }
 </style>
