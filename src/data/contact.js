@@ -17,14 +17,14 @@ export const contactItems = [
     id: 'email',
     icon: 'mail',
     label: 'Email',
-    value: 'dushan.nawodya@arotek.it',
-    href: 'mailto:dushan.nawodya@arotek.it',
+    value: 'dushan.nawodya@daleconsulting.it',
+    href: 'mailto:dushan.nawodya@daleconsulting.it',
   },
   {
     id: 'address',
     icon: 'map-pin',
     label: 'Location',
-    value: 'Naples, Italy',
+    value: 'Milan, Italy',
     href: null,
   },
 ]

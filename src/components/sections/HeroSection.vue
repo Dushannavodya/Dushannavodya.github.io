@@ -1,11 +1,14 @@
 <script setup>
+import { computed } from 'vue'
 import { ChevronDown } from 'lucide-vue-next'
 import { site } from '@/data/site.js'
 import { scrollToHash } from '@/composables/useSmoothScroll.js'
 import Squares from '@/components/animated/Squares.vue'
-import SplitText from '@/components/animated/SplitText.vue'
 import BlurText from '@/components/animated/BlurText.vue'
+import DecryptedText from '@/components/animated/DecryptedText.vue'
 import Magnet from '@/components/animated/Magnet.vue'
+
+const heroName = computed(() => site.name.toUpperCase())
 </script>
 
 <template>
@@ -26,13 +29,16 @@ import Magnet from '@/components/animated/Magnet.vue'
     </div>
 
     <div class="hero__content">
-      <SplitText
-        :text="site.name.toUpperCase()"
-        tag="h1"
-        class="hero__name"
-        :delay="40"
-        :duration="0.9"
-      />
+      <h1 class="hero__name">
+        <DecryptedText
+          :text="heroName"
+          :speed="95"
+          :max-iterations="14"
+          :sequential="true"
+          reveal-direction="center"
+          animate-on="hover"
+        />
+      </h1>
       <BlurText
         :text="site.tagline"
         tag="p"
@@ -133,6 +139,27 @@ import Magnet from '@/components/animated/Magnet.vue'
   line-height: 0.95;
   text-transform: uppercase;
   text-shadow: 0 6px 60px rgba(0, 0, 0, 0.18);
+  cursor: default;
+  animation: hero-name-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Override the DecryptedText accent color in the hero so the encrypted
+ * characters stay legible against the warm orange background. */
+.hero__name :deep(.decrypted__char--encrypted) {
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 1;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+}
+
+@keyframes hero-name-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero__role {

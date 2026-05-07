@@ -110,8 +110,7 @@ const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
 .service-card__title {
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   margin-bottom: var(--space-3);
 }
 

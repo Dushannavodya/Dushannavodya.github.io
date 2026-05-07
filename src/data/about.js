@@ -7,6 +7,6 @@ export const about = {
   ],
   highlights: [
     { label: 'Core Focus', value: 'Web · Mobile · UX' },
-    { label: 'Based In', value: 'Naples, Italy' },
+    { label: 'Based In', value: 'Milan, Italy' },
   ],
 }

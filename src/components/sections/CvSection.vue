@@ -85,11 +85,23 @@ import { skills } from '@/data/skills.js'
   gap: var(--space-4);
 }
 
-/* Timeline */
+/* Timeline
+ * --tl-gutter : horizontal space reserved for the rail (= padding-left).
+ * --tl-rail-x : horizontal center of the vertical rail, measured from
+ *               the timeline's left edge.
+ * --tl-dot    : dot diameter.
+ *
+ * Both the ::before rail and each .timeline__dot derive their position
+ * from these variables, so they always line up exactly. */
 .timeline {
+  --tl-gutter: 32px;
+  --tl-rail-x: 6px;
+  --tl-dot: 12px;
+
   position: relative;
-  padding-left: var(--space-6);
+  padding-left: var(--tl-gutter);
   margin: var(--space-3) 0 0;
+  list-style: none;
 }
 
 .timeline::before {
@@ -97,7 +109,7 @@ import { skills } from '@/data/skills.js'
   position: absolute;
   top: 8px;
   bottom: 8px;
-  left: 6px;
+  left: calc(var(--tl-rail-x) - 0.5px);
   width: 1px;
   background: var(--border);
 }
@@ -114,12 +126,17 @@ import { skills } from '@/data/skills.js'
 .timeline__dot {
   position: absolute;
   top: 6px;
-  left: calc(var(--space-6) * -1 + 1px);
-  width: 12px;
-  height: 12px;
+  /* Place the dot so its CENTER sits exactly on --tl-rail-x:
+   *   item left edge is at  +tl-gutter   from .timeline
+   *   dot left edge wanted: tl-rail-x - tl-dot / 2 from .timeline
+   * => relative to the item: that minus the gutter. */
+  left: calc(var(--tl-rail-x) - var(--tl-gutter) - var(--tl-dot) / 2);
+  width: var(--tl-dot);
+  height: var(--tl-dot);
   border-radius: 50%;
   background: var(--bg);
   border: 2px solid var(--border-strong);
+  box-sizing: border-box;
 }
 
 .timeline__item.is-current .timeline__dot {
@@ -132,9 +149,9 @@ import { skills } from '@/data/skills.js'
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--space-3);
   flex-wrap: wrap;
-  margin-bottom: var(--space-1);
+  gap: 4px var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .timeline__title {
@@ -142,6 +159,8 @@ import { skills } from '@/data/skills.js'
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .timeline__time {
@@ -149,6 +168,8 @@ import { skills } from '@/data/skills.js'
   letter-spacing: 0.1em;
   color: var(--text-dim);
   font-variant-numeric: tabular-nums;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .timeline__company {

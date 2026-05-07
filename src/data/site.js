@@ -36,7 +36,7 @@ export const socials = [
   },
   {
     label: 'Email',
-    href: 'mailto:dushan.nawodya@arotek.it',
+    href: 'mailto:dushan.nawodya@daleconsulting.it',
     icon: 'mail',
   },
 ]

@@ -24,18 +24,20 @@ const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
     <div class="container">
       <SectionHeading eyebrow="Selected Projects" title="My Recent Works" />
 
-      <div v-reveal class="works__filters" role="tablist">
-        <button
-          v-for="filter in portfolioFilters"
-          :key="filter.value"
-          type="button"
-          role="tab"
-          :aria-selected="activeFilter === filter.value"
-          :class="['works__filter', { 'is-active': activeFilter === filter.value }]"
-          @click="selectFilter(filter.value)"
-        >
-          {{ filter.label }}
-        </button>
+      <div v-reveal class="works__filters-wrap">
+        <div class="works__filters" role="tablist">
+          <button
+            v-for="filter in portfolioFilters"
+            :key="filter.value"
+            type="button"
+            role="tab"
+            :aria-selected="activeFilter === filter.value"
+            :class="['works__filter', { 'is-active': activeFilter === filter.value }]"
+            @click="selectFilter(filter.value)"
+          >
+            {{ filter.label }}
+          </button>
+        </div>
       </div>
 
       <div class="works__grid">
@@ -69,17 +71,22 @@ const MESH_COLORS = ['#d9f95c', '#ff7a18', '#ff4d00']
 </template>
 
 <style scoped>
+.works__filters-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-7);
+}
+
 .works__filters {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 4px;
   padding: 6px;
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border);
-  margin: 0 auto var(--space-7);
-  margin-left: 50%;
-  transform: translateX(-50%);
+  max-width: 100%;
 }
 
 .works__filter {
