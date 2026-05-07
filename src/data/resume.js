@@ -12,7 +12,7 @@ export const experience = [
   {
     time: '2022 - 2024',
     title: 'Junior Software Developer',
-    institute: 'Arotek, Naples',
+    institute: 'Ulixe Italy, Naples',
   },
   {
     time: '2021 - 2022',
