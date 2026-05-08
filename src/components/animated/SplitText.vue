@@ -9,8 +9,10 @@
  * line as a unit but the browser can never break in the middle of a word
  * (which would happen if every character were its own inline-block).
  */
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { motion } from 'motion-v'
+
+const completedTexts = new Set()
 
 const props = defineProps({
   text: { type: String, required: true },
@@ -27,6 +29,11 @@ const props = defineProps({
     default: () => ({ opacity: 1, y: '0em' }),
   },
 })
+
+const animationKey = computed(
+  () => `split-text:${props.tag}:${props.splitType}:${props.text}`,
+)
+const hasAnimated = ref(completedTexts.has(animationKey.value))
 
 // For chars: [{ chars: ['D', 'U', ...], startIndex: 0 }, ...]
 const wordsForChars = computed(() => {
@@ -56,6 +63,17 @@ const transition = (index) => ({
   delay: (index * props.delay) / 1000,
   ease: [0.22, 1, 0.36, 1],
 })
+
+const initialState = computed(() => (hasAnimated.value ? props.to : props.from))
+
+function markAnimated() {
+  hasAnimated.value = true
+  completedTexts.add(animationKey.value)
+}
+
+onMounted(() => {
+  if (completedTexts.has(animationKey.value)) hasAnimated.value = true
+})
 </script>
 
 <template>
@@ -67,10 +85,11 @@ const transition = (index) => ({
           <motion.span
             v-for="(char, cIdx) in word.chars"
             :key="cIdx"
-            :initial="from"
+            :initial="initialState"
             :while-in-view="to"
             :viewport="{ once: true, amount: 0.4 }"
             :transition="transition(word.startIndex + cIdx)"
+            @viewport-enter="markAnimated"
             class="split-text__inner"
           >{{ char }}</motion.span>
         </span>
@@ -85,10 +104,11 @@ const transition = (index) => ({
       >
         <motion.span
           v-if="part.trim() !== ''"
-          :initial="from"
+          :initial="initialState"
           :while-in-view="to"
           :viewport="{ once: true, amount: 0.4 }"
           :transition="transition(index)"
+          @viewport-enter="markAnimated"
           class="split-text__inner"
         >
           {{ part }}

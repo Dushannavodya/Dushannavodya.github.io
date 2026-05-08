@@ -32,11 +32,11 @@ const heroName = computed(() => site.name.toUpperCase())
       <h1 class="hero__name">
         <DecryptedText
           :text="heroName"
-          :speed="95"
-          :max-iterations="14"
+          :speed="180"
+          :max-iterations="18"
           :sequential="true"
           reveal-direction="center"
-          animate-on="hover"
+          animate-on="view"
         />
       </h1>
       <BlurText
@@ -143,7 +143,7 @@ const heroName = computed(() => site.name.toUpperCase())
   text-transform: uppercase;
   text-shadow: 0 6px 60px rgba(0, 0, 0, 0.18);
   cursor: default;
-  animation: hero-name-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-name-in 1400ms cubic-bezier(0.22, 1, 0.36, 1) both;
   max-width: 100%;
   overflow-wrap: anywhere;
 }

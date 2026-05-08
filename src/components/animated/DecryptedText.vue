@@ -45,6 +45,7 @@ const hasAnimated = ref(false)
 
 let interval = null
 let intersectionObserver = null
+const completedViewAnimations = new Set()
 
 function getNextIndex(revealedSet) {
   const len = props.text.length
@@ -178,14 +179,22 @@ function onLeave() {
 
 onMounted(async () => {
   if (props.animateOn !== 'view') return
+  if (completedViewAnimations.has(props.text)) {
+    hasAnimated.value = true
+    displayText.value = props.text
+    return
+  }
+
   await nextTick()
 
   intersectionObserver = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting && !hasAnimated.value) {
+          displayText.value = shuffleText(props.text, new Set())
           isHovering.value = true
           hasAnimated.value = true
+          completedViewAnimations.add(props.text)
         }
       }
     },
