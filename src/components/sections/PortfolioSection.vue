@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onUnmounted, ref, watch } from 'vue'
 import { X } from 'lucide-vue-next'
 import SectionHeading from '@/components/SectionHeading.vue'
 import MagicBento from '@/components/animated/MagicBento.vue'
@@ -16,6 +16,14 @@ const categoryLabels = {
 }
 
 const activeWorkId = ref(null)
+const scrollLockState = {
+  locked: false,
+  styles: {
+    bodyOverflow: '',
+    bodyPaddingRight: '',
+    documentOverflow: '',
+  },
+}
 
 const activeWork = computed(() =>
   portfolio.find((item) => item.id === activeWorkId.value),
@@ -34,8 +42,7 @@ const activeBentoCards = computed(() => {
     {
       label: categoryLabels[activeWork.value.category],
       title: activeWork.value.title,
-      description:
-        'A focused project built around clean interaction, practical workflows, and a polished user experience.',
+      description: activeWork.value.summary,
       className: 'magic-bento__card--wide',
     },
     {
@@ -46,13 +53,14 @@ const activeBentoCards = computed(() => {
     },
     {
       label: 'Focus',
-      title: categoryLabels[activeWork.value.category],
-      description: 'Designed with responsive layouts and a clear visual hierarchy.',
+      title: 'Project Details',
+      description: activeWork.value.focus,
+      details: activeWork.value.details,
     },
     {
       label: 'Delivery',
-      title: 'Modern UI',
-      description: 'Minimal cards, readable details, and motion that stays lightweight.',
+      title: activeWork.value.outcome,
+      description: activeWork.value.delivery,
     },
   ]
 })
@@ -64,6 +72,43 @@ function openWork(item) {
 function closeWork() {
   activeWorkId.value = null
 }
+
+function lockPageScroll() {
+  if (scrollLockState.locked || typeof window === 'undefined') return
+
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+
+  scrollLockState.styles = {
+    bodyOverflow: document.body.style.overflow,
+    bodyPaddingRight: document.body.style.paddingRight,
+    documentOverflow: document.documentElement.style.overflow,
+  }
+
+  document.documentElement.style.overflow = 'hidden'
+  document.body.style.overflow = 'hidden'
+  document.body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : ''
+  scrollLockState.locked = true
+}
+
+function unlockPageScroll() {
+  if (!scrollLockState.locked || typeof window === 'undefined') return
+
+  document.documentElement.style.overflow = scrollLockState.styles.documentOverflow
+  document.body.style.overflow = scrollLockState.styles.bodyOverflow
+  document.body.style.paddingRight = scrollLockState.styles.bodyPaddingRight
+  scrollLockState.locked = false
+}
+
+watch(activeWork, (work) => {
+  if (work) {
+    lockPageScroll()
+    return
+  }
+
+  unlockPageScroll()
+})
+
+onUnmounted(unlockPageScroll)
 </script>
 
 <template>

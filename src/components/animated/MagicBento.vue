@@ -140,6 +140,10 @@ function burst(event) {
         <ul v-if="card.tags?.length" class="magic-bento__tags">
           <li v-for="tag in card.tags" :key="tag">{{ tag }}</li>
         </ul>
+
+        <ul v-if="card.details?.length" class="magic-bento__details">
+          <li v-for="detail in card.details" :key="detail">{{ detail }}</li>
+        </ul>
       </div>
     </article>
   </div>
@@ -242,13 +246,19 @@ function burst(event) {
 .magic-bento__image {
   flex: 1;
   min-height: 270px;
+  display: grid;
+  place-items: center;
+  padding: var(--space-3);
   overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    #03060b;
 }
 
 .magic-bento__image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .magic-bento__content {
@@ -293,6 +303,33 @@ function burst(event) {
   background: rgba(var(--magic-glow), 0.08);
   font-size: 12px;
   font-weight: 700;
+}
+
+.magic-bento__details {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.magic-bento__details li {
+  position: relative;
+  padding-left: 18px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.magic-bento__details li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgb(var(--magic-glow));
+  box-shadow: 0 0 14px rgba(var(--magic-glow), 0.72);
+  transform: translateY(-50%);
 }
 
 :deep(.magic-bento__ripple),
