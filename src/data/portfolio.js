@@ -1,10 +1,3 @@
-export const portfolioFilters = [
-  { label: 'All', value: '*' },
-  { label: 'UX/UI', value: 'uxui' },
-  { label: 'Web Apps', value: 'web-app' },
-  { label: 'Mobile Apps', value: 'mobile-app' },
-]
-
 export const portfolio = [
   {
     id: 'justeat-redesign',
