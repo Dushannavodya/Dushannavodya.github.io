@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { ChevronDown } from 'lucide-vue-next'
 import { site } from '@/data/site.js'
 import { scrollToHash } from '@/composables/useSmoothScroll.js'
-import Squares from '@/components/animated/Squares.vue'
+import PixelBlast from '@/components/animated/PixelBlast.vue'
 import BlurText from '@/components/animated/BlurText.vue'
 import DecryptedText from '@/components/animated/DecryptedText.vue'
 import Magnet from '@/components/animated/Magnet.vue'
@@ -15,14 +15,14 @@ const heroName = computed(() => site.name.toUpperCase())
   <section id="hero" class="hero">
     <div class="hero__bg" aria-hidden="true">
       <div class="hero__gradient"></div>
-      <div class="hero__squares">
-        <Squares
-          direction="diagonal"
-          :speed="0.4"
-          :square-size="56"
-          border-color="rgba(255,255,255,0.16)"
-          hover-fill-color="rgba(255,255,255,0.08)"
-          vignette-color="rgba(255, 77, 0, 0.55)"
+      <div class="hero__pixels">
+        <PixelBlast
+          color="#ff560b"
+          glow-color="rgba(255, 111, 28, 0.76)"
+          :enable-ripples="false"
+          :pixel-size="14"
+          :speed="0.66"
+          :density="0.63"
         />
       </div>
       <div class="hero__glow"></div>
@@ -32,11 +32,12 @@ const heroName = computed(() => site.name.toUpperCase())
       <h1 class="hero__name">
         <DecryptedText
           :text="heroName"
-          :speed="95"
-          :max-iterations="14"
+          :speed="115"
+          :max-iterations="16"
           :sequential="true"
+          :use-original-chars-only="true"
           reveal-direction="center"
-          animate-on="hover"
+          animate-on="view-hover"
         />
       </h1>
       <BlurText
@@ -86,23 +87,23 @@ const heroName = computed(() => site.name.toUpperCase())
   inset: 0;
   background:
     radial-gradient(
-      circle at 30% 30%,
-      rgba(255, 200, 120, 0.4) 0%,
+      circle at 26% 24%,
+      rgba(255, 116, 36, 0.54) 0%,
       transparent 55%
     ),
     radial-gradient(
-      circle at 80% 70%,
-      rgba(255, 60, 0, 0.5) 0%,
+      circle at 82% 72%,
+      rgba(255, 86, 11, 0.68) 0%,
       transparent 60%
     ),
-    linear-gradient(135deg, var(--orange-1) 0%, var(--orange-2) 100%);
+    linear-gradient(135deg, #ff9a3d 0%, #ff560b 46%, #5a1300 100%);
 }
 
-.hero__squares {
+.hero__pixels {
   position: absolute;
   inset: 0;
-  opacity: 0.55;
-  mix-blend-mode: overlay;
+  opacity: 0.82;
+  mix-blend-mode: screen;
 }
 
 /* A faint warm glow centered behind the name */
@@ -143,17 +144,17 @@ const heroName = computed(() => site.name.toUpperCase())
   text-transform: uppercase;
   text-shadow: 0 6px 60px rgba(0, 0, 0, 0.18);
   cursor: default;
-  animation: hero-name-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-name-in 1400ms cubic-bezier(0.22, 1, 0.36, 1) both;
   max-width: 100%;
   overflow-wrap: anywhere;
 }
 
 /* Override the DecryptedText accent color in the hero so the encrypted
- * characters stay legible against the warm orange background. */
+ * characters stay legible against the deep orange background. */
 .hero__name :deep(.decrypted__char--encrypted) {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 211, 166, 0.9);
   opacity: 1;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+  text-shadow: 0 0 22px rgba(255, 86, 11, 0.56);
 }
 
 @keyframes hero-name-in {

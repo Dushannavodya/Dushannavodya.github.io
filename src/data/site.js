@@ -3,7 +3,6 @@ export const site = {
   shortName: 'Dushan',
   tagline: 'Fullstack Developer',
   url: 'https://dushannavodya.github.io/',
-  logo: '/assets/img/logo/logo-dark.png',
   heroImage: '/assets/img/hero/me.png',
   resumeUrl: '/assets/files/Dushan-Resume.pdf',
 }

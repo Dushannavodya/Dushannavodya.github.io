@@ -23,8 +23,8 @@ const iconByNumber = {
   '06': Megaphone,
 }
 
-const GLOW_HSL = '18 100 50'
-const MESH_COLORS = ['#ff4d00', '#ff7a18', '#ff9a3d']
+const GLOW_HSL = '18 100 52'
+const MESH_COLORS = ['#d83f00', '#ff560b', '#ffb06e']
 </script>
 
 <template>
@@ -151,7 +151,7 @@ const MESH_COLORS = ['#ff4d00', '#ff7a18', '#ff9a3d']
 
 .service-card:hover .service-card__icon {
   background: var(--accent-dim);
-  border-color: rgba(255, 77, 0, 0.34);
+  border-color: rgba(255, 86, 11, 0.38);
   transform: rotate(-3deg) scale(1.04);
 }
 
