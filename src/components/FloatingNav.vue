@@ -48,8 +48,8 @@ function onClick(event, href) {
   z-index: 60;
   padding: 6px;
   border-radius: var(--radius-pill);
-  background: rgba(0, 0, 0, 0.32);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(6, 16, 32, 0.58);
+  border: 1px solid rgba(93, 178, 255, 0.24);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   transition: opacity 320ms ease, transform 320ms ease;
@@ -82,8 +82,13 @@ function onClick(event, href) {
 
 .floating-nav a:hover,
 .floating-nav a.is-active {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--text);
+  background: var(--accent-dim);
+  color: var(--accent-strong);
+}
+
+:root[data-theme="light"] .floating-nav {
+  background: rgba(255, 255, 255, 0.76);
+  border-color: rgba(31, 111, 235, 0.2);
 }
 
 @media (max-width: 860px) {

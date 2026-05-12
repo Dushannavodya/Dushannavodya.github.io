@@ -152,13 +152,14 @@ onBeforeUnmount(() => {
 
 .dock a:hover,
 .dock button:hover {
-  color: var(--text);
+  color: var(--accent-strong);
   background: var(--control-hover-bg);
 }
 
 .dock a.is-active {
-  color: var(--accent);
+  color: var(--accent-strong);
   background: var(--accent-dim);
+  box-shadow: inset 0 0 0 1px rgba(93, 178, 255, 0.22);
 }
 
 .dock__separator {

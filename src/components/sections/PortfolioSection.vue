@@ -15,8 +15,8 @@ function selectFilter(value) {
   activeFilter.value = value
 }
 
-const GLOW_HSL = '18 100 50'
-const MESH_COLORS = ['#ff4d00', '#ff7a18', '#ff9a3d']
+const GLOW_HSL = '207 100 68'
+const MESH_COLORS = ['#1f6feb', '#5db2ff', '#b7e4ff']
 </script>
 
 <template>
@@ -104,7 +104,7 @@ const MESH_COLORS = ['#ff4d00', '#ff7a18', '#ff9a3d']
 
 .works__filter.is-active {
   background: var(--accent);
-  color: #0a0a0a;
+  color: var(--accent-contrast);
 }
 
 .works__grid {

@@ -14,7 +14,7 @@ import ContactSection from './components/sections/ContactSection.vue'
 <template>
   <FloatingNav />
   <FloatingDock />
-  <ClickSpark spark-color="#ff4d00" :spark-count="10" :spark-radius="24" />
+  <ClickSpark spark-color="#5db2ff" :spark-count="10" :spark-radius="24" />
 
   <main id="content">
     <HeroSection />

@@ -16,7 +16,7 @@ import { computed, ref, useTemplateRef, watch } from 'vue'
 const props = defineProps({
   className: { type: String, default: '' },
   edgeSensitivity: { type: Number, default: 30 },
-  glowColor: { type: String, default: '18 100 50' }, // "h s% l%"
+  glowColor: { type: String, default: '207 100 68' }, // "h s% l%"
   backgroundColor: { type: String, default: 'var(--surface)' },
   borderRadius: { type: Number, default: 14 },
   glowRadius: { type: Number, default: 40 },
@@ -25,7 +25,7 @@ const props = defineProps({
   animated: { type: Boolean, default: false },
   colors: {
     type: Array,
-    default: () => ['#ff4d00', '#ff7a18', '#ff9a3d'],
+    default: () => ['#1f6feb', '#5db2ff', '#b7e4ff'],
   },
   fillOpacity: { type: Number, default: 0.5 },
 })

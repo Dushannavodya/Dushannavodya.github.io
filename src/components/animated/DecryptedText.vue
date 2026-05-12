@@ -6,7 +6,7 @@
  *   https://vue-bits.dev - https://github.com/DavidHDev/vue-bits
  *
  * This port is plain JS with scoped CSS (no Tailwind), and keeps the
- * original API: `animateOn` chooses the trigger ('hover' | 'view'),
+ * original API: `animateOn` chooses the trigger ('hover' | 'view' | 'view-hover'),
  * `sequential` reveals characters one-by-one in `revealDirection` order,
  * otherwise it scrambles `maxIterations` times before settling.
  */
@@ -31,7 +31,7 @@ const props = defineProps({
     default:
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+',
   },
-  animateOn: { type: String, default: 'hover' }, // 'hover' | 'view'
+  animateOn: { type: String, default: 'hover' }, // 'hover' | 'view' | 'view-hover'
 })
 
 const emit = defineEmits(['animation-complete'])
@@ -115,6 +115,10 @@ function shuffleText(originalText, currentRevealed) {
     .join('')
 }
 
+function hasTrigger(trigger) {
+  return props.animateOn.split('-').includes(trigger)
+}
+
 watch(
   [
     isHovering,
@@ -148,6 +152,7 @@ watch(
             clearInterval(interval)
             interval = null
             isScrambling.value = false
+            if (props.animateOn === 'view-hover') isHovering.value = false
             emit('animation-complete')
           }
         } else {
@@ -158,6 +163,7 @@ watch(
             interval = null
             isScrambling.value = false
             displayText.value = props.text
+            if (props.animateOn === 'view-hover') isHovering.value = false
             emit('animation-complete')
           }
         }
@@ -171,14 +177,14 @@ watch(
 )
 
 function onEnter() {
-  if (props.animateOn === 'hover') isHovering.value = true
+  if (hasTrigger('hover')) isHovering.value = true
 }
 function onLeave() {
-  if (props.animateOn === 'hover') isHovering.value = false
+  if (hasTrigger('hover')) isHovering.value = false
 }
 
 onMounted(async () => {
-  if (props.animateOn !== 'view') return
+  if (!hasTrigger('view')) return
   if (completedViewAnimations.has(props.text)) {
     hasAnimated.value = true
     displayText.value = props.text
