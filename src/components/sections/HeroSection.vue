@@ -17,8 +17,8 @@ const heroName = computed(() => site.name.toUpperCase())
       <div class="hero__gradient"></div>
       <div class="hero__pixels">
         <PixelBlast
-          color="#007BA7"
-          glow-color="rgba(0, 180, 220, 0.72)"
+          color="#ff560b"
+          glow-color="rgba(255, 111, 28, 0.76)"
           :enable-ripples="false"
           :pixel-size="14"
           :speed="0.66"
@@ -88,15 +88,15 @@ const heroName = computed(() => site.name.toUpperCase())
   background:
     radial-gradient(
       circle at 26% 24%,
-      rgba(0, 180, 220, 0.5) 0%,
+      rgba(255, 116, 36, 0.54) 0%,
       transparent 55%
     ),
     radial-gradient(
       circle at 82% 72%,
-      rgba(0, 123, 167, 0.64) 0%,
+      rgba(255, 86, 11, 0.68) 0%,
       transparent 60%
     ),
-    linear-gradient(135deg, #00a8d7 0%, #007ba7 46%, #063a6f 100%);
+    linear-gradient(135deg, #ff9a3d 0%, #ff560b 46%, #5a1300 100%);
 }
 
 .hero__pixels {
@@ -106,7 +106,7 @@ const heroName = computed(() => site.name.toUpperCase())
   mix-blend-mode: screen;
 }
 
-/* A faint cool glow centered behind the name */
+/* A faint warm glow centered behind the name */
 .hero__glow {
   position: absolute;
   left: 50%;
@@ -150,11 +150,11 @@ const heroName = computed(() => site.name.toUpperCase())
 }
 
 /* Override the DecryptedText accent color in the hero so the encrypted
- * characters stay legible against the deep blue background. */
+ * characters stay legible against the deep orange background. */
 .hero__name :deep(.decrypted__char--encrypted) {
-  color: rgba(166, 239, 255, 0.86);
+  color: rgba(255, 211, 166, 0.9);
   opacity: 1;
-  text-shadow: 0 0 22px rgba(0, 180, 220, 0.5);
+  text-shadow: 0 0 22px rgba(255, 86, 11, 0.56);
 }
 
 @keyframes hero-name-in {

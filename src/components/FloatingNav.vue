@@ -42,16 +42,21 @@ function onClick(event, href) {
 <style scoped>
 .floating-nav {
   position: fixed;
-  top: 28px;
+  top: 24px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 60;
-  padding: 6px;
+  padding: 4px;
   border-radius: var(--radius-pill);
-  background: rgba(6, 16, 32, 0.58);
-  border: 1px solid rgba(93, 178, 255, 0.24);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035)),
+    rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(26px) saturate(1.18);
+  -webkit-backdrop-filter: blur(26px) saturate(1.18);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
   transition: opacity 320ms ease, transform 320ms ease;
 }
 
@@ -64,31 +69,56 @@ function onClick(event, href) {
 .floating-nav ul {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 1px;
 }
 
 .floating-nav a {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 10px 16px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  min-height: 36px;
+  padding: 9px 16px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--text);
+  color: rgba(255, 255, 255, 0.58);
   border-radius: var(--radius-pill);
-  transition: all var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition),
+    transform var(--transition);
 }
 
-.floating-nav a:hover,
+.floating-nav a::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 6px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: #ff560b;
+  opacity: 0;
+  transform: scaleX(0.5);
+  transition:
+    opacity var(--transition),
+    transform var(--transition);
+}
+
+.floating-nav a:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .floating-nav a.is-active {
-  background: var(--accent-dim);
-  color: var(--accent-strong);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
 }
 
-:root[data-theme="light"] .floating-nav {
-  background: rgba(255, 255, 255, 0.76);
-  border-color: rgba(31, 111, 235, 0.2);
+.floating-nav a.is-active::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 @media (max-width: 860px) {

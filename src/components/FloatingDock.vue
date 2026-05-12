@@ -111,8 +111,8 @@ onBeforeUnmount(() => {
   max-width: calc(100dvw - 24px);
   padding: 8px;
   border-radius: var(--radius-pill);
-  background: var(--dock-bg);
-  border: 1px solid var(--dock-border);
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow-soft);
@@ -152,14 +152,14 @@ onBeforeUnmount(() => {
 
 .dock a:hover,
 .dock button:hover {
-  color: var(--accent-strong);
-  background: var(--control-hover-bg);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .dock a.is-active {
-  color: var(--accent-strong);
-  background: var(--accent-dim);
-  box-shadow: inset 0 0 0 1px rgba(93, 178, 255, 0.22);
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(255, 86, 11, 0.22);
 }
 
 .dock__separator {
@@ -167,6 +167,17 @@ onBeforeUnmount(() => {
   height: 22px;
   background: var(--border-strong);
   margin: 0 4px;
+}
+
+:root[data-theme="light"] .dock {
+  background: var(--dock-bg);
+  border-color: var(--dock-border);
+}
+
+:root[data-theme="light"] .dock a:hover,
+:root[data-theme="light"] .dock button:hover {
+  color: var(--accent-strong);
+  background: var(--control-hover-bg);
 }
 
 @media (max-width: 640px) {

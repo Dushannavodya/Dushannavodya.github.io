@@ -4,8 +4,8 @@ import SectionHeading from '@/components/SectionHeading.vue'
 import BorderGlow from '@/components/animated/BorderGlow.vue'
 import { innovations, innovationsIntro } from '@/data/innovations.js'
 
-const GLOW_HSL = '207 100 68'
-const MESH_COLORS = ['#1f6feb', '#5db2ff', '#b7e4ff']
+const GLOW_HSL = '18 100 52'
+const MESH_COLORS = ['#d83f00', '#ff560b', '#ffb06e']
 </script>
 
 <template>
@@ -105,7 +105,7 @@ const MESH_COLORS = ['#1f6feb', '#5db2ff', '#b7e4ff']
   inset: 0;
   background:
     linear-gradient(180deg, transparent 35%, rgba(0, 0, 0, 0.62)),
-    radial-gradient(circle at 12% 10%, rgba(93, 178, 255, 0.34), transparent 35%);
+    radial-gradient(circle at 12% 10%, rgba(255, 86, 11, 0.34), transparent 35%);
   opacity: 0.76;
   transition: opacity var(--transition);
 }

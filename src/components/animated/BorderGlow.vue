@@ -25,7 +25,7 @@ const props = defineProps({
   animated: { type: Boolean, default: false },
   colors: {
     type: Array,
-    default: () => ['#1f6feb', '#5db2ff', '#b7e4ff'],
+    default: () => ['#d83f00', '#ff560b', '#ffb06e'],
   },
   fillOpacity: { type: Number, default: 0.5 },
 })

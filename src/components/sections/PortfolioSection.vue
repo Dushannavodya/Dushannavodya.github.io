@@ -121,7 +121,7 @@ function closeWork() {
 
             <MagicBento
               :cards="activeBentoCards"
-              glow-color="93, 178, 255"
+              glow-color="255, 86, 11"
               :spotlight-radius="360"
               enable-tilt
               enable-magnetism
@@ -161,7 +161,7 @@ function closeWork() {
 }
 
 .work-card:hover {
-  border-color: rgba(93, 178, 255, 0.5);
+  border-color: rgba(255, 86, 11, 0.5);
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
 }
@@ -205,10 +205,10 @@ function closeWork() {
   align-items: center;
   min-height: 32px;
   padding: 7px 12px;
-  border: 1px solid rgba(93, 178, 255, 0.65);
+  border: 1px solid rgba(255, 86, 11, 0.65);
   border-radius: var(--radius-pill);
   color: var(--accent);
-  background: rgba(93, 178, 255, 0.06);
+  background: rgba(255, 86, 11, 0.06);
   font-size: 12px;
   font-weight: 700;
 }
@@ -263,7 +263,7 @@ function closeWork() {
   width: min(980px, 100%);
   max-height: min(760px, calc(100vh - 48px));
   overflow: auto;
-  border: 1px solid rgba(93, 178, 255, 0.24);
+  border: 1px solid rgba(255, 86, 11, 0.24);
   border-radius: var(--radius-lg);
   background: #05080e;
   box-shadow: 0 32px 90px rgba(0, 0, 0, 0.46);

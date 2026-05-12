@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 
 const props = defineProps({
   cards: { type: Array, required: true },
-  glowColor: { type: String, default: '93, 178, 255' },
+  glowColor: { type: String, default: '255, 86, 11' },
   spotlightRadius: { type: Number, default: 320 },
   enableTilt: { type: Boolean, default: true },
   enableMagnetism: { type: Boolean, default: true },

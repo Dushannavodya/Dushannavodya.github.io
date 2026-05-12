@@ -9,7 +9,7 @@
 import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue'
 
 const props = defineProps({
-  color: { type: String, default: '#5db2ff' },
+  color: { type: String, default: '#ff560b' },
   pixelSize: { type: Number, default: 14 },
   speed: { type: Number, default: 0.55 },
   density: { type: Number, default: 0.58 },

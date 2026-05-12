@@ -24,18 +24,18 @@
   --text-muted: #9a9a9a;
   --text-dim: #6a6a6a;
 
-  --accent: #5db2ff;
-  --accent-strong: #91d0ff;
-  --accent-contrast: #06111f;
-  --accent-dim: rgba(93, 178, 255, 0.18);
+  --accent: #ff560b;
+  --accent-strong: #ff8a3d;
+  --accent-contrast: #1f0800;
+  --accent-dim: rgba(255, 86, 11, 0.18);
   --control-bg: rgba(255, 255, 255, 0.04);
-  --dock-bg: rgba(6, 16, 32, 0.78);
-  --dock-border: rgba(93, 178, 255, 0.22);
-  --control-hover-bg: rgba(93, 178, 255, 0.12);
+  --dock-bg: rgba(32, 11, 4, 0.78);
+  --dock-border: rgba(255, 86, 11, 0.22);
+  --control-hover-bg: rgba(255, 86, 11, 0.12);
 
-  --blue-1: #8bd4ff;
-  --blue-2: #2d82ff;
-  --blue-3: #08225a;
+  --orange-1: #ffb06e;
+  --orange-2: #ff560b;
+  --orange-3: #5b1500;
 
   /* Typography */
   --font-sans: "Geom", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -79,14 +79,14 @@
   --text-muted: #68685d;
   --text-dim: #8f8f82;
 
-  --accent: #1f6feb;
-  --accent-strong: #0b4ec4;
+  --accent: #ff560b;
+  --accent-strong: #d83f00;
   --accent-contrast: #ffffff;
-  --accent-dim: rgba(31, 111, 235, 0.14);
+  --accent-dim: rgba(255, 86, 11, 0.14);
   --control-bg: rgba(17, 17, 17, 0.04);
   --dock-bg: rgba(255, 255, 255, 0.88);
-  --dock-border: rgba(31, 111, 235, 0.18);
-  --control-hover-bg: rgba(31, 111, 235, 0.1);
+  --dock-border: rgba(255, 86, 11, 0.18);
+  --control-hover-bg: rgba(255, 86, 11, 0.1);
 
   --shadow-soft: 0 12px 32px rgba(30, 30, 20, 0.14);
 }
