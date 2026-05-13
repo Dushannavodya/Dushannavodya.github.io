@@ -168,9 +168,7 @@ onUnmounted(unlockPageScroll)
               :cards="activeBentoCards"
               glow-color="255, 86, 11"
               :spotlight-radius="360"
-              enable-tilt
-              enable-magnetism
-              click-effect
+              :click-effect="false"
             />
           </div>
         </div>
@@ -299,8 +297,11 @@ onUnmounted(unlockPageScroll)
   display: grid;
   place-items: center;
   padding: var(--space-5);
+  overflow-y: auto;
   background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(14px);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .work-modal__panel {
@@ -310,7 +311,7 @@ onUnmounted(unlockPageScroll)
   overflow: auto;
   border: 1px solid rgba(255, 86, 11, 0.24);
   border-radius: var(--radius-lg);
-  background: #05080e;
+  background: var(--bg-elevated);
   box-shadow: 0 32px 90px rgba(0, 0, 0, 0.46);
 }
 
@@ -335,7 +336,7 @@ onUnmounted(unlockPageScroll)
   height: 42px;
   border: 1px solid var(--border-strong);
   border-radius: 50%;
-  background: rgba(10, 10, 10, 0.58);
+  background: color-mix(in srgb, var(--bg-elevated) 78%, transparent);
   color: var(--text);
   backdrop-filter: blur(10px);
   transition: all var(--transition);
@@ -377,7 +378,19 @@ onUnmounted(unlockPageScroll)
   }
 
   .work-modal {
-    padding: var(--space-3);
+    align-items: start;
+    padding: 68px var(--space-3) var(--space-3);
+  }
+
+  .work-modal__panel {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .work-modal__close {
+    position: fixed;
+    top: max(var(--space-3), env(safe-area-inset-top));
+    right: max(var(--space-3), env(safe-area-inset-right));
   }
 }
 
