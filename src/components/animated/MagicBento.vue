@@ -5,8 +5,6 @@ const props = defineProps({
   cards: { type: Array, required: true },
   glowColor: { type: String, default: '255, 86, 11' },
   spotlightRadius: { type: Number, default: 320 },
-  enableTilt: { type: Boolean, default: true },
-  enableMagnetism: { type: Boolean, default: true },
   clickEffect: { type: Boolean, default: true },
 })
 
@@ -42,31 +40,15 @@ function handleCardMove(event) {
   const rect = card.getBoundingClientRect()
   const x = event.clientX - rect.left
   const y = event.clientY - rect.top
-  const centerX = rect.width / 2
-  const centerY = rect.height / 2
 
   card.style.setProperty('--glow-x', `${(x / rect.width) * 100}%`)
   card.style.setProperty('--glow-y', `${(y / rect.height) * 100}%`)
   card.style.setProperty('--glow-intensity', '1')
-
-  if (props.enableTilt) {
-    card.style.setProperty('--rotate-x', `${((y - centerY) / centerY) * -7}deg`)
-    card.style.setProperty('--rotate-y', `${((x - centerX) / centerX) * 7}deg`)
-  }
-
-  if (props.enableMagnetism) {
-    card.style.setProperty('--mag-x', `${(x - centerX) * 0.035}px`)
-    card.style.setProperty('--mag-y', `${(y - centerY) * 0.035}px`)
-  }
 }
 
 function resetCard(event) {
   const card = event.currentTarget
   card.style.setProperty('--glow-intensity', '0')
-  card.style.setProperty('--rotate-x', '0deg')
-  card.style.setProperty('--rotate-y', '0deg')
-  card.style.setProperty('--mag-x', '0px')
-  card.style.setProperty('--mag-y', '0px')
 }
 
 function burst(event) {
@@ -179,10 +161,6 @@ function burst(event) {
   --glow-x: 50%;
   --glow-y: 50%;
   --glow-intensity: 0;
-  --rotate-x: 0deg;
-  --rotate-y: 0deg;
-  --mag-x: 0px;
-  --mag-y: 0px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -198,17 +176,11 @@ function burst(event) {
       rgba(var(--magic-glow), calc(var(--glow-intensity) * 0.2)),
       transparent 42%
     ),
-    #060b13;
-  color: #fff;
-  transform:
-    perspective(900px)
-    translate3d(var(--mag-x), var(--mag-y), 0)
-    rotateX(var(--rotate-x))
-    rotateY(var(--rotate-y));
+    var(--surface);
+  color: var(--text);
   transition:
     border-color 220ms ease,
-    box-shadow 220ms ease,
-    transform 180ms ease;
+    box-shadow 220ms ease;
 }
 
 .magic-bento__card::before {
@@ -252,7 +224,7 @@ function burst(event) {
   overflow: hidden;
   background:
     linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
-    #03060b;
+    var(--surface-2);
 }
 
 .magic-bento__image img {
@@ -264,6 +236,7 @@ function burst(event) {
 .magic-bento__content {
   position: relative;
   z-index: 1;
+  min-width: 0;
   padding: var(--space-5);
 }
 
@@ -278,14 +251,18 @@ function burst(event) {
 }
 
 .magic-bento__content h3 {
-  font-size: clamp(24px, 3.4vw, 44px);
-  line-height: 1;
-  overflow-wrap: anywhere;
+  max-width: 100%;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.08;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .magic-bento__content p {
   margin-top: var(--space-3);
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--text-muted);
+  overflow-wrap: break-word;
 }
 
 .magic-bento__tags {
@@ -296,6 +273,7 @@ function burst(event) {
 }
 
 .magic-bento__tags li {
+  max-width: 100%;
   padding: 7px 12px;
   border: 1px solid rgba(var(--magic-glow), 0.42);
   border-radius: var(--radius-pill);
@@ -303,6 +281,7 @@ function burst(event) {
   background: rgba(var(--magic-glow), 0.08);
   font-size: 12px;
   font-weight: 700;
+  overflow-wrap: break-word;
 }
 
 .magic-bento__details {
@@ -314,9 +293,10 @@ function burst(event) {
 .magic-bento__details li {
   position: relative;
   padding-left: 18px;
-  color: rgba(255, 255, 255, 0.74);
+  color: var(--text-muted);
   font-size: 13px;
   font-weight: 600;
+  overflow-wrap: break-word;
 }
 
 .magic-bento__details li::before {
@@ -380,6 +360,7 @@ function burst(event) {
 @media (max-width: 720px) {
   .magic-bento {
     grid-template-columns: 1fr;
+    padding: var(--space-2);
   }
 
   .magic-bento__card,
@@ -390,14 +371,22 @@ function burst(event) {
   }
 
   .magic-bento__image {
-    min-height: 230px;
+    min-height: 180px;
+    max-height: 56dvh;
+  }
+
+  .magic-bento__content {
+    padding: var(--space-4);
+  }
+
+  .magic-bento__content h3 {
+    font-size: clamp(22px, 9vw, 34px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .magic-bento__card,
   .magic-bento__card:hover {
-    transform: none;
     transition: none;
   }
 }
