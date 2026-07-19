@@ -1,17 +1,22 @@
 export const portfolio = [
   {
-    id: 'justeat-redesign',
-    title: 'JustEat Redesign',
-    tags: 'Adobe XD',
-    image: '/assets/img/portfolio/2.jpg',
-    category: 'uxui',
+    id: 'dallitalia',
+    title: 'Dallitalia',
+    tags: 'Vue.js',
+    image: '/assets/img/portfolio/Dallitalia.png',
+    category: 'web-app',
     summary:
-      'A food-ordering redesign focused on clearer menu scanning, faster checkout decisions, and a cleaner mobile-first ordering flow.',
-    focus: 'UX research, wireframes, visual cleanup, and interaction refinement for a familiar delivery experience.',
+      'A modern cross-border e-commerce platform connecting customers in Sri Lanka with authentic Italian products through a seamless shopping experience.',
+    focus:
+      'Focused on intuitive product discovery, transparent international shipping, secure order management, and a responsive user experience across all devices.',
     delivery:
-      'Designed a polished Adobe XD prototype with simplified navigation, stronger content hierarchy, and reusable UI patterns.',
-    details: ['Mobile ordering flow', 'Checkout clarity', 'Visual hierarchy'],
-    outcome: 'Prototype ready',
+      'Built with Vue , Node.js & Express, featuring role-based administration, product management, bank transfer order processing, and scalable cloud deployment.',
+    details: [
+      'Authentic Italian product marketplace',
+      'Admin dashboard & inventory management',
+      'International shipping workflow'
+    ],
+    outcome: 'Cross-border e-commerce platform',
   },
   {
     id: 'ceylon-pass',
@@ -27,6 +32,20 @@ export const portfolio = [
       'Delivered iOS and Android app foundations powered by Supabase for secure pass data, authentication, and event updates.',
     details: ['Digital event passes', 'Entry verification', 'Sri Lankan community in Italy'],
     outcome: 'Event pass app',
+  },
+    {
+    id: 'justeat-redesign',
+    title: 'JustEat Redesign',
+    tags: 'Adobe XD',
+    image: '/assets/img/portfolio/2.jpg',
+    category: 'uxui',
+    summary:
+      'A food-ordering redesign focused on clearer menu scanning, faster checkout decisions, and a cleaner mobile-first ordering flow.',
+    focus: 'UX research, wireframes, visual cleanup, and interaction refinement for a familiar delivery experience.',
+    delivery:
+      'Designed a polished Adobe XD prototype with simplified navigation, stronger content hierarchy, and reusable UI patterns.',
+    details: ['Mobile ordering flow', 'Checkout clarity', 'Visual hierarchy'],
+    outcome: 'Prototype ready',
   },
   {
     id: 'police-traffic-controller',
