@@ -2,7 +2,7 @@ export const contactIntro = {
   eyebrow: 'Get in Touch',
   title: "Let's Connect",
   description:
-    "I'm always open to discussing new projects, creative ideas, or opportunities. Reach out on social media or drop me an email - I'd love to hear from you.",
+    "I'm always open to discussing new projects, creative ideas, or opportunities. Reach out on social media or drop me an email. I'd love to hear from you.",
 }
 
 export const contactItems = [

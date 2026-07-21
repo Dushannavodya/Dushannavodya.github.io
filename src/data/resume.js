@@ -30,11 +30,11 @@ export const education = [
   {
     time: '2015 - 2017',
     title: 'G.C.E Advanced Level',
-    institute: 'St.Joseph Vaz College, Sri-lanka',
+    institute: 'St.Joseph Vaz College, Sri lanka',
   },
   {
     time: '2003 - 2014',
     title: 'G.C.E Ordinary Level',
-    institute: "St.Mary's College, Sri-lanka",
+    institute: "St.Mary's College, Sri lanka",
   },
 ]
